@@ -1,0 +1,15 @@
+{
+  "name": "xenomolt",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "xenomolt_bg.wasm",
+    "xenomolt.js",
+    "xenomolt.d.ts"
+  ],
+  "main": "xenomolt.js",
+  "types": "xenomolt.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
