@@ -383,7 +383,7 @@
                 busyIndicator.classList.add("active");
                 busyLabel.textContent = "thinking...";
 
-                // Route through the renderer
+                // Route through the renderer (also triggers card swap)
                 const result = renderer.query(text);
                 console.log("Query result:", result);
 
@@ -394,6 +394,45 @@
                     modelLabel.textContent = "qwen-local";
                 }
             }
+
+            // Listen for WorkspaceResponse messages from WebSocket
+            // The WS message handler in Rust calls back, but we also need
+            // a JS-side listener to forward workspace data to the renderer
+            function setupWorkspaceListener() {
+                const wsUrl = `ws://${location.hostname}:3001/ws`;
+                try {
+                    const rawWs = new WebSocket(wsUrl);
+                    rawWs.onmessage = (event) => {
+                        try {
+                            const msg = JSON.parse(event.data);
+                            if (msg.type === "WorkspaceResponse") {
+                                console.log("WorkspaceResponse received:", msg.request_id);
+                                renderer.update_card_data(JSON.stringify(msg.data));
+                                busyIndicator.classList.remove("active");
+                            }
+                            if (msg.type === "ChatToken") {
+                                responseArea.textContent += msg.text;
+                            }
+                            if (msg.type === "ChatComplete") {
+                                busyIndicator.classList.remove("active");
+                            }
+                            if (msg.type === "TaskStatusBatch" && msg.tasks) {
+                                const active = msg.tasks.filter(t => t.status === "Running");
+                                if (active.length > 0) {
+                                    tasksLabel.textContent = active[0].status_line || "Working...";
+                                } else {
+                                    tasksLabel.textContent = "No active tasks";
+                                }
+                            }
+                        } catch (e) {
+                            // Not JSON or parse error — ignore
+                        }
+                    };
+                } catch (e) {
+                    console.log("Workspace listener setup skipped:", e);
+                }
+            }
+            setupWorkspaceListener();
 
             inputField.addEventListener("keydown", (e) => {
                 if (e.key === "Enter" && !e.shiftKey) {

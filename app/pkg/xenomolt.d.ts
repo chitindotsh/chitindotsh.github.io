@@ -29,7 +29,15 @@ export class Renderer {
      */
     query(prompt: string): string;
     render_frame(): void;
+    /**
+     * Swap the center card (index 1) to a new card intent.
+     */
+    swap_card(intent_str: string): void;
     tick(dt_ms: number): void;
+    /**
+     * Update the center card's string table with workspace data.
+     */
+    update_card_data(data_json: string): void;
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -44,12 +52,14 @@ export interface InitOutput {
     readonly renderer_is_connected: (a: number) => number;
     readonly renderer_query: (a: number, b: number, c: number) => [number, number];
     readonly renderer_render_frame: (a: number) => void;
+    readonly renderer_swap_card: (a: number, b: number, c: number) => void;
     readonly renderer_tick: (a: number, b: number) => void;
-    readonly wasm_bindgen__closure__destroy__h283dd3cee0e3591b: (a: number, b: number) => void;
+    readonly renderer_update_card_data: (a: number, b: number, c: number) => void;
     readonly wasm_bindgen__closure__destroy__he4ab2d5a70e59846: (a: number, b: number) => void;
+    readonly wasm_bindgen__closure__destroy__h283dd3cee0e3591b: (a: number, b: number) => void;
     readonly wasm_bindgen__convert__closures_____invoke__h1922ab0c4ae00fa0: (a: number, b: number, c: any, d: any) => void;
-    readonly wasm_bindgen__convert__closures_____invoke__h011bfca7dbea29e4: (a: number, b: number, c: any) => void;
     readonly wasm_bindgen__convert__closures_____invoke__hfeac75565d13acc9: (a: number, b: number, c: any) => void;
+    readonly wasm_bindgen__convert__closures_____invoke__h011bfca7dbea29e4: (a: number, b: number, c: any) => void;
     readonly __wbindgen_malloc: (a: number, b: number) => number;
     readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
     readonly __wbindgen_exn_store: (a: number) => void;
