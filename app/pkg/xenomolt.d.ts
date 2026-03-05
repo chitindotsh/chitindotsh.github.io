@@ -7,6 +7,14 @@ export class Renderer {
     [Symbol.dispose](): void;
     add_card(canvas: HTMLCanvasElement): Promise<void>;
     /**
+     * Handle a click on a card canvas. Returns an action string for JS dispatch.
+     *
+     * Hit regions (all cards are 300×400):
+     * - Header (10,10 → 290,60): Card 0 = "oauth:google", Card 1 = noop, Card 2 = noop
+     * - Action bar (10,340 → 290,385): Card 0 = "refresh:gmail", Card 1 = "focus_input", Card 2 = noop
+     */
+    card_click(card_index: number, x: number, y: number): string;
+    /**
      * Route an inference request through Genius to the best-suited model.
      */
     classify_intent(prompt: string): string;
@@ -30,6 +38,10 @@ export class Renderer {
     query(prompt: string): string;
     render_frame(): void;
     /**
+     * Send a Google OAuth request over the WebSocket.
+     */
+    request_oauth(provider: string): boolean;
+    /**
      * Swap the center card (index 1) to a new card intent.
      */
     swap_card(intent_str: string): void;
@@ -46,12 +58,14 @@ export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly __wbg_renderer_free: (a: number, b: number) => void;
     readonly renderer_add_card: (a: number, b: any) => any;
+    readonly renderer_card_click: (a: number, b: number, c: number, d: number) => [number, number];
     readonly renderer_classify_intent: (a: number, b: number, c: number) => [number, number];
     readonly renderer_connect: (a: number, b: number, c: number) => number;
     readonly renderer_create: () => any;
     readonly renderer_is_connected: (a: number) => number;
     readonly renderer_query: (a: number, b: number, c: number) => [number, number];
     readonly renderer_render_frame: (a: number) => void;
+    readonly renderer_request_oauth: (a: number, b: number, c: number) => number;
     readonly renderer_swap_card: (a: number, b: number, c: number) => void;
     readonly renderer_tick: (a: number, b: number) => void;
     readonly renderer_update_card_data: (a: number, b: number, c: number) => void;

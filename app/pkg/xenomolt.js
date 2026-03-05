@@ -27,6 +27,29 @@ export class Renderer {
         return ret;
     }
     /**
+     * Handle a click on a card canvas. Returns an action string for JS dispatch.
+     *
+     * Hit regions (all cards are 300×400):
+     * - Header (10,10 → 290,60): Card 0 = "oauth:google", Card 1 = noop, Card 2 = noop
+     * - Action bar (10,340 → 290,385): Card 0 = "refresh:gmail", Card 1 = "focus_input", Card 2 = noop
+     * @param {number} card_index
+     * @param {number} x
+     * @param {number} y
+     * @returns {string}
+     */
+    card_click(card_index, x, y) {
+        let deferred1_0;
+        let deferred1_1;
+        try {
+            const ret = wasm.renderer_card_click(this.__wbg_ptr, card_index, x, y);
+            deferred1_0 = ret[0];
+            deferred1_1 = ret[1];
+            return getStringFromWasm0(ret[0], ret[1]);
+        } finally {
+            wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
+        }
+    }
+    /**
      * Route an inference request through Genius to the best-suited model.
      * @param {string} prompt
      * @returns {string}
@@ -97,6 +120,17 @@ export class Renderer {
     }
     render_frame() {
         wasm.renderer_render_frame(this.__wbg_ptr);
+    }
+    /**
+     * Send a Google OAuth request over the WebSocket.
+     * @param {string} provider
+     * @returns {boolean}
+     */
+    request_oauth(provider) {
+        const ptr0 = passStringToWasm0(provider, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.renderer_request_oauth(this.__wbg_ptr, ptr0, len0);
+        return ret !== 0;
     }
     /**
      * Swap the center card (index 1) to a new card intent.

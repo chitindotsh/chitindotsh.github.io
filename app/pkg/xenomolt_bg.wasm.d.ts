@@ -3,12 +3,14 @@
 export const memory: WebAssembly.Memory;
 export const __wbg_renderer_free: (a: number, b: number) => void;
 export const renderer_add_card: (a: number, b: any) => any;
+export const renderer_card_click: (a: number, b: number, c: number, d: number) => [number, number];
 export const renderer_classify_intent: (a: number, b: number, c: number) => [number, number];
 export const renderer_connect: (a: number, b: number, c: number) => number;
 export const renderer_create: () => any;
 export const renderer_is_connected: (a: number) => number;
 export const renderer_query: (a: number, b: number, c: number) => [number, number];
 export const renderer_render_frame: (a: number) => void;
+export const renderer_request_oauth: (a: number, b: number, c: number) => number;
 export const renderer_swap_card: (a: number, b: number, c: number) => void;
 export const renderer_tick: (a: number, b: number) => void;
 export const renderer_update_card_data: (a: number, b: number, c: number) => void;
