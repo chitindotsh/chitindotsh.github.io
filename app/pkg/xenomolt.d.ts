@@ -70,10 +70,10 @@ export interface InitOutput {
     readonly renderer_tick: (a: number, b: number) => void;
     readonly renderer_update_card_data: (a: number, b: number, c: number) => void;
     readonly wasm_bindgen__closure__destroy__he4ab2d5a70e59846: (a: number, b: number) => void;
-    readonly wasm_bindgen__closure__destroy__h557b2781242d56e4: (a: number, b: number) => void;
+    readonly wasm_bindgen__closure__destroy__h844badfb34ccc337: (a: number, b: number) => void;
     readonly wasm_bindgen__convert__closures_____invoke__h1922ab0c4ae00fa0: (a: number, b: number, c: any, d: any) => void;
     readonly wasm_bindgen__convert__closures_____invoke__hfeac75565d13acc9: (a: number, b: number, c: any) => void;
-    readonly wasm_bindgen__convert__closures_____invoke__h22935774d5e558f4: (a: number, b: number, c: any) => void;
+    readonly wasm_bindgen__convert__closures_____invoke__hb1c47878851bf430: (a: number, b: number, c: any) => void;
     readonly __wbindgen_malloc: (a: number, b: number) => number;
     readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
     readonly __wbindgen_exn_store: (a: number) => void;

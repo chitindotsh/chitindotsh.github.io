@@ -1724,23 +1724,23 @@ function __wbg_get_imports() {
             arg0.writeBuffer(arg1, arg2, arg3, arg4, arg5);
         }, arguments); },
         __wbindgen_cast_0000000000000001: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { dtor_idx: 1010, function: Function { arguments: [Externref], shim_idx: 1011, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
+            // Cast intrinsic for `Closure(Closure { dtor_idx: 1009, function: Function { arguments: [Externref], shim_idx: 1010, ret: Unit, inner_ret: Some(Unit) }, mutable: true }) -> Externref`.
             const ret = makeMutClosure(arg0, arg1, wasm.wasm_bindgen__closure__destroy__he4ab2d5a70e59846, wasm_bindgen__convert__closures_____invoke__hfeac75565d13acc9);
             return ret;
         },
         __wbindgen_cast_0000000000000002: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { dtor_idx: 192, function: Function { arguments: [Externref], shim_idx: 193, ret: Unit, inner_ret: Some(Unit) }, mutable: false }) -> Externref`.
-            const ret = makeClosure(arg0, arg1, wasm.wasm_bindgen__closure__destroy__h557b2781242d56e4, wasm_bindgen__convert__closures_____invoke__h22935774d5e558f4);
+            // Cast intrinsic for `Closure(Closure { dtor_idx: 263, function: Function { arguments: [Externref], shim_idx: 264, ret: Unit, inner_ret: Some(Unit) }, mutable: false }) -> Externref`.
+            const ret = makeClosure(arg0, arg1, wasm.wasm_bindgen__closure__destroy__h844badfb34ccc337, wasm_bindgen__convert__closures_____invoke__hb1c47878851bf430);
             return ret;
         },
         __wbindgen_cast_0000000000000003: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { dtor_idx: 192, function: Function { arguments: [NamedExternref("ErrorEvent")], shim_idx: 193, ret: Unit, inner_ret: Some(Unit) }, mutable: false }) -> Externref`.
-            const ret = makeClosure(arg0, arg1, wasm.wasm_bindgen__closure__destroy__h557b2781242d56e4, wasm_bindgen__convert__closures_____invoke__h22935774d5e558f4);
+            // Cast intrinsic for `Closure(Closure { dtor_idx: 263, function: Function { arguments: [NamedExternref("ErrorEvent")], shim_idx: 264, ret: Unit, inner_ret: Some(Unit) }, mutable: false }) -> Externref`.
+            const ret = makeClosure(arg0, arg1, wasm.wasm_bindgen__closure__destroy__h844badfb34ccc337, wasm_bindgen__convert__closures_____invoke__hb1c47878851bf430);
             return ret;
         },
         __wbindgen_cast_0000000000000004: function(arg0, arg1) {
-            // Cast intrinsic for `Closure(Closure { dtor_idx: 192, function: Function { arguments: [NamedExternref("MessageEvent")], shim_idx: 193, ret: Unit, inner_ret: Some(Unit) }, mutable: false }) -> Externref`.
-            const ret = makeClosure(arg0, arg1, wasm.wasm_bindgen__closure__destroy__h557b2781242d56e4, wasm_bindgen__convert__closures_____invoke__h22935774d5e558f4);
+            // Cast intrinsic for `Closure(Closure { dtor_idx: 263, function: Function { arguments: [NamedExternref("MessageEvent")], shim_idx: 264, ret: Unit, inner_ret: Some(Unit) }, mutable: false }) -> Externref`.
+            const ret = makeClosure(arg0, arg1, wasm.wasm_bindgen__closure__destroy__h844badfb34ccc337, wasm_bindgen__convert__closures_____invoke__hb1c47878851bf430);
             return ret;
         },
         __wbindgen_cast_0000000000000005: function(arg0) {
@@ -1808,8 +1808,8 @@ function wasm_bindgen__convert__closures_____invoke__hfeac75565d13acc9(arg0, arg
     wasm.wasm_bindgen__convert__closures_____invoke__hfeac75565d13acc9(arg0, arg1, arg2);
 }
 
-function wasm_bindgen__convert__closures_____invoke__h22935774d5e558f4(arg0, arg1, arg2) {
-    wasm.wasm_bindgen__convert__closures_____invoke__h22935774d5e558f4(arg0, arg1, arg2);
+function wasm_bindgen__convert__closures_____invoke__hb1c47878851bf430(arg0, arg1, arg2) {
+    wasm.wasm_bindgen__convert__closures_____invoke__hb1c47878851bf430(arg0, arg1, arg2);
 }
 
 function wasm_bindgen__convert__closures_____invoke__h1922ab0c4ae00fa0(arg0, arg1, arg2, arg3) {
