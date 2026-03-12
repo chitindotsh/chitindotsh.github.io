@@ -164,16 +164,34 @@
 
   <form class="signup" id="signup-form">
     <input type="email" name="x-enc" placeholder="your@email.com" required autocomplete="email">
-    <button type="submit">Notify Me</button>
+    <button type="submit">Join Waitlist</button>
   </form>
   <p class="message" id="message"></p>
 
-  <img src="https://xenomolt.glideslope.sh/basic/ping.png" width="1" height="1" alt="" style="position:absolute;top:0;left:0;opacity:0;">
   <footer>
     <a href="mailto:info@chitin.sh">info@chitin.sh</a>
   </footer>
 
   <script>
+    // Glideslope configuration — list names match xenomolt.toml list_mapping keys
+    const GLIDESLOPE = {
+      origin: "https://xenomolt.glideslope.sh",
+      lists: { emailList: "email-list" },
+      segment: "early-beta-signup",
+    };
+
+    // Tracking pixel — fire-and-forget page visit event
+    new Image().src = GLIDESLOPE.origin + "/basic/ping.png";
+
+    async function glideslopeSubmit(listName, email) {
+      const res = await fetch(GLIDESLOPE.origin + "/submit/" + listName, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email }),
+      });
+      if (!res.ok) throw new Error(res.statusText);
+    }
+
     const form = document.getElementById("signup-form");
     const msg = document.getElementById("message");
 
@@ -188,25 +206,20 @@
       msg.textContent = "";
 
       try {
-        const res = await fetch("https://xenomolt.glideslope.sh/submit/interest-list", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email }),
-        });
+        await Promise.all([
+          glideslopeSubmit(GLIDESLOPE.lists.emailList, email),
+          glideslopeSubmit(GLIDESLOPE.segment, email),
+        ]);
 
-        if (res.ok) {
-          msg.className = "message success";
-          msg.textContent = "You're on the list. We'll be in touch.";
-          form.querySelector("input").value = "";
-        } else {
-          throw new Error(res.statusText);
-        }
+        msg.className = "message success";
+        msg.textContent = "You're on the list. We'll be in touch.";
+        form.querySelector("input").value = "";
       } catch (err) {
         msg.className = "message error";
         msg.textContent = "Something went wrong. Try again or email us directly.";
       } finally {
         btn.disabled = false;
-        btn.textContent = "Notify Me";
+        btn.textContent = "Join Waitlist";
       }
     });
   </script>
